@@ -1,0 +1,2031 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Meros",
+        "description": "Onlayn market",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/auth/login": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "User Login",
+                "description": "Code will be sent to number after User Login",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "user_number": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "user_number": "+99897787788",
+                                    "password": "123"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json:": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "User found",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "200",
+                                            "description": "Status of the response"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/registor": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "Registor User",
+                "description": "Registor",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "user_mail": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "user_name": {
+                                        "type": "string"
+                                    },
+                                    "user_number": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "user_number": "+99897787788",
+                                    "user_name": "Kamron",
+                                    "user_mail": "Kamron@gmail.com",
+                                    "password": "1234"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "create",
+                        "content": {
+                            "application/json:": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "User created",
+                                            "description": "Status of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "201",
+                                            "description": "Status of the response"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/updateUser": {
+            "put": {
+                "tags": ["Users"],
+                "summary": "Registor User",
+                "description": "Registor",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [{
+                        "name": "access_token",
+                        "in": "header",
+                        "required": true
+                    }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "user_mail": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "user_name": {
+                                        "type": "string"
+                                    },
+                                    "user_number": {
+                                        "type": "string"
+                                    },
+                                    "user_img": {
+                                        "type": "string"
+                                    },
+                                    "user_surname": {
+                                        "type": "string"
+                                    },
+                                    "user_s": {
+                                        "type": "string"
+                                    },
+                                    "user_was_born": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "user_number": "+99897777777",
+                                    "user_name": "Toshmat",
+                                    "user_mail": "Toshmat@gmail.com",
+                                    "password": "123",
+                                    "user_surname": "eshmatov",
+                                    "user_was_born": 1999,
+                                    "user_s": "boy",
+                                    "user_img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0UOcdqWXG6QjHiYfGz-86s3M8zq7dS7Lxzw&usqp=CAU"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "create",
+                        "content": {
+                            "application/json:": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "User Updated",
+                                            "description": "Status of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "200",
+                                            "description": "Status of the response"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/allCategories": {
+            "get": {
+                "sammary": "Get all Categories",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "message": {
+                                        "type": "string",
+                                        "default": "All Categories",
+                                        "description": "Message of the response"
+                                    },
+                                    "status": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "default": "200",
+                                        "description": "Status of the response"
+                                    },
+                                    "data": "array",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "All categories"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Category"
+                ]
+            }
+        },
+        "/categories/Category/{id}": {
+            "get": {
+                "tags": ["Category"],
+                "summary": "Get one Category and it's sub categories and products",
+                "description": "With this api you can view Category",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json:": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "found   category",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "200",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "description": "view Category",
+                                            "default": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/create": {
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Create Category",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "title": "Clothes"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "create",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Created category",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "201",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/update/{id}": {
+            "put": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Update Category",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "description": "With this api you can update Category",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "title": "Compyuteries"
+                                }
+                            }
+                        }
+                    }, "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Update",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "200",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Delete Category",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Category Deleted Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Delete",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "204",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/subCategories/allSubCategories": {
+            "get": {
+                "tags": [
+                    "sub-Category"
+                ],
+                "sammary": "Get all sub Categories",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "message": {
+                                        "type": "string",
+                                        "default": "All sub Categories",
+                                        "description": "Message of the response"
+                                    },
+                                    "status": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "default": "200",
+                                        "description": "Status of the response"
+                                    },
+                                    "data": "array",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "All sub categories"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/subCategories/SubCategory/{id}": {
+            "get": {
+                "tags": ["sub-Category"],
+                "summary": "Get one Category and it's sub categories and products",
+                "description": "With this api you can view sub Category",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json:": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "found  Sub category",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "200",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "description": "view sub Category",
+                                            "default": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/subCategories/create": {
+            "post": {
+                "tags": [
+                    "sub-Category"
+                ],
+                "summary": "Create sub Category",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "category_id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "title": "Clothes",
+                                    "category_id": "494d4cac-54a7-4f73-b970-b3b03054e4ee"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "create",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Created sub category",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "201",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/subCategories/update/{id}": {
+            "put": {
+                "tags": [
+                    "sub-Category"
+                ],
+                "summary": "Update sub Category",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "description": "With this api you can update Category",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "category_id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "title": "Compyuteries",
+                                    "category_id": "494d4cac-54a7-4f73-b970-b3b03054e4ee"
+                                }
+                            }
+                        }
+                    }, "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Update",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "200",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/subCategories/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "sub-Category"
+                ],
+                "summary": "Delete Category",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sub Category Deleted Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Delete",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "204",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/SubSubCategories/allSubSubCategories": {
+            "get": {
+                "tags": [
+                    "sub-sub-Category"
+                ],
+                "sammary": "Get all sub sub Categories",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "message": {
+                                        "type": "string",
+                                        "default": "All sub sub Categories",
+                                        "description": "Message of the response"
+                                    },
+                                    "status": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "default": "200",
+                                        "description": "Status of the response"
+                                    },
+                                    "data": "array",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "All sub sub categories"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/SubSubCategories/SubSubCategory/{id}": {
+            "get": {
+                "tags": [
+                    "sub-sub-Category"
+                ],
+                "summary": "Get one Category and it's sub categories and products",
+                "description": "With this api you can view sub Category",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json:": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "found sub  Sub category",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "200",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "description": "view sub Category",
+                                            "default": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/SubSubCategories/create": {
+            "post": {
+                "tags": [
+                    "sub-sub-Category"
+                ],
+                "summary": "Create sub sub  Category",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "category_id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "title": "Clothes",
+                                    "sub_category_id": "1ac80991-3516-4dcf-b6bc-764e5a0ea34a"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "create",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Created sub sub category",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "201",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/SubSubCategories/update/{id}": {
+            "put": {
+                "tags": [
+                    "sub-sub-Category"
+                ],
+                "summary": "Update sub sub Category",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "description": "With this api you can update sub sub Category",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "category_id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "title": "Compyuteries",
+                                    "sub_category_id": "1ac80991-3516-4dcf-b6bc-764e5a0ea34a"
+                                }
+                            }
+                        }
+                    }, "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Update",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "200",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/SubSubCategories/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "sub-sub-Category"
+                ],
+                "summary": "Delete sub sub  Category",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sub sub Category Deleted Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Delete",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "204",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/product/allProducts?page={page}&limit={limit}": {
+            "get": {
+                "tags": [
+                    "products"
+                ],
+                "parameters": [{
+                        "in": "path",
+                        "name": "page",
+                        "default": 1,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "limit",
+                        "default": 10,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }],
+                "sammary": "Get all products",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "message": {
+                                        "type": "string",
+                                        "default": "All products",
+                                        "description": "Message of the response"
+                                    },
+                                    "status": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "default": "200",
+                                        "description": "Status of the response"
+                                    },
+                                    "data": "array",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "All products"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/product/oneProduct/{id}": {
+            "get": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Get one products and it's comment and rate",
+                "description": "One product",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json:": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Products",
+                                            "description": "Products"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "200",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "description": "One product",
+                                            "default": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/product/create": {
+            "post": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Create product",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "sub_sub_id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "string"
+                                    },
+                                    "brand": {
+                                        "type": "string"
+                                    },
+                                    "size": {
+                                        "type": "string"
+                                    },
+                                    "author": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "color": {
+                                        "type": "string"
+                                    },
+                                    "made_in": {
+                                        "type": "string"
+                                    },
+                                    "discount": {
+                                        "type": "string"
+                                    },
+                                    "img": {
+                                        "type": "string"
+                                    },
+                                    "img1": {
+                                        "type": "string"
+                                    },
+                                    "img2": {
+                                        "type": "string"
+                                    },
+                                    "img3": {
+                                        "type": "string"
+                                    },
+                                    "img4": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "sub_sub_id": "7c7115db-9075-48af-bbda-b4d78f890dd9",
+                                    "title": "Axad Qayum  she'rlari 13",
+                                    "price": "75 000",
+                                    "brand": "book.uz",
+                                    "size": "20",
+                                    "author": "Axad Qayum",
+                                    "description": "Yaxshi kitob",
+                                    "color": "oq",
+                                    "made_in": "britan",
+                                    "img": "https://m.media-amazon.com/images/M/MV5BZmJkMTRiMjUtM2ZjMS00ZWJjLWIxOTUtZjY4OTA5ZTJmZjM3XkEyXkFqcGdeQXVyNTA4NzExMDg@._V1_FMjpg_UX1000_.jpg"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "create ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Created product",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "201",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/product/update/{id}": {
+            "put": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Update product",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "description": "With this api you can update product",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "sub_sub_id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "string"
+                                    },
+                                    "brand": {
+                                        "type": "string"
+                                    },
+                                    "size": {
+                                        "type": "string"
+                                    },
+                                    "author": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "color": {
+                                        "type": "string"
+                                    },
+                                    "made_in": {
+                                        "type": "string"
+                                    },
+                                    "discount": {
+                                        "type": "string"
+                                    },
+                                    "img": {
+                                        "type": "string"
+                                    },
+                                    "img1": {
+                                        "type": "string"
+                                    },
+                                    "img2": {
+                                        "type": "string"
+                                    },
+                                    "img3": {
+                                        "type": "string"
+                                    },
+                                    "img4": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "sub_sub_id": "7c7115db-9075-48af-bbda-b4d78f890dd9",
+                                    "title": "Yangi katakli dizayndagi ko'ylak 15",
+                                    "price": "500 000",
+                                    "brand": "adidas",
+                                    "size": "50",
+                                    "author": "adidas kompaniyasi xodimi",
+                                    "description": "yaxshi ko'ylak",
+                                    "color": "qora",
+                                    "made_in": "turkey",
+                                    "img": "https://m.media-amazon.com/images/M/MV5BZmJkMTRiMjUtM2ZjMS00ZWJjLWIxOTUtZjY4OTA5ZTJmZjM3XkEyXkFqcGdeQXVyNTA4NzExMDg@._V1_FMjpg_UX1000_.jpg"
+                                }
+                            }
+                        }
+                    }, "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Update",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "200",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/product/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Delete product",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "product Deleted Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Delete",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "204",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comment/create": {
+            "post": {
+                "tags": [
+                    "comments"
+                ],
+                "summary": "Create comment",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "ProductId": {
+                                        "type": "string"
+                                    },
+                                    "userId": {
+                                        "type": "string"
+                                    },
+                                    "commentary": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "ProductId": "2f371b44-1a04-4e60-bb56-8cd77618e843",
+                                    "userId": "08c48b69-2f01-4bef-b8ca-532fb7d051cd",
+                                    "commentary": "Mendan  commentni 1"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "create",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Created comment",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "201",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comment/update/{id}": {
+            "put": {
+                "tags": [
+                    "comments"
+                ],
+                "summary": "Update comment",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "description": "Update comment",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ProductId": {
+                                        "type": "string"
+                                    },
+                                    "userId": {
+                                        "type": "string"
+                                    },
+                                    "commentary": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "ProductId": "2f371b44-1a04-4e60-bb56-8cd77618e843",
+                                    "userId": "08c48b69-2f01-4bef-b8ca-532fb7d051cd",
+                                    "commentary": "Mendan  commentni 1"
+                                }
+                            }
+                        }
+                    }, "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Update",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "200",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comment/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "comments"
+                ],
+                "summary": "Delete comment",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Comment Deleted Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Delete",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "204",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/evaluation/rate/{id}": {
+            "put": {
+                "tags": [
+                    "Rate"
+                ],
+                "summary": "Update rate",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "description": "Update rate",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "star": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "star": 5
+                                }
+                            }
+                        }
+                    }, "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Update",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "200",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/discount/update/{id}": {
+            "put": {
+                "tags": [
+                    "discount"
+                ],
+                "summary": "Update discount",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "description": "Update discount",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "discount": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "discount": 25
+                                }
+                            }
+                        }
+                    }, "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Update discount",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "200",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/orders/myproducts": {
+            "get": {
+                "tags": [
+                    "My-Products"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [{
+                        "name": "access_token",
+                        "in": "header",
+                        "required": true
+                    }],
+                "sammary": "Get My Products",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "message": {
+                                        "type": "string",
+                                        "default": "All My-Products",
+                                        "description": "Message of the response"
+                                    },
+                                    "status": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "default": "200",
+                                        "description": "Status of the response"
+                                    },
+                                    "data": "array",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "All My Products"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/orders/create": {
+            "post": {
+                "tags": [
+                    "My-Products"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "description": "by product and get my products",
+                "parameters": [{
+                        "name": "access_token",
+                        "in": "header",
+                        "required": true
+                    }],
+                "summary": "Create My Product",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "ProductId": {
+                                        "type": "string"
+                                    },
+                                    "count": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "ProductId": "2f371b44-1a04-4e60-bb56-8cd77618e843",
+                                    "count": 6
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "create",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Created my product",
+                                            "description": "Message of the response"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "default": "201",
+                                            "description": "Status of the response"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sortproduct/star": {
+            "get": {
+                "tags": [
+                    "sort_Products"
+                ],
+                "parameters": [{
+                        "in": "path",
+                        "name": "page",
+                        "default": 1,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "limit",
+                        "default": 10,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }],
+                "sammary": "Get sort by start",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "message": {
+                                        "type": "string",
+                                        "default": "All sort by start",
+                                        "description": "Message of the response"
+                                    },
+                                    "status": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "default": "200",
+                                        "description": "Status of the response"
+                                    },
+                                    "data": "array",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "All sort by start"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sortproduct/soldProduct?page={page}&limit={limit}": {
+            "get": {
+                "tags": [
+                    "sort_Products"
+                ],
+                "parameters": [{
+                        "in": "path",
+                        "name": "page",
+                        "default": 1,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "limit",
+                        "default": 10,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }],
+                "sammary": "Get sort by sold ",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "message": {
+                                        "type": "string",
+                                        "default": "All sort by sold",
+                                        "description": "Message of the response"
+                                    },
+                                    "status": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "default": "200",
+                                        "description": "Status of the response"
+                                    },
+                                    "data": "array",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "All sort by sold"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sortproduct/NewDateProduct?page={page}&limit={limit}": {
+            "get": {
+                "tags": [
+                    "sort_Products"
+                ],
+                "parameters": [{
+                        "in": "path",
+                        "name": "page",
+                        "default": 1,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "limit",
+                        "default": 10,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }],
+                "sammary": "Get sort by new date ",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "message": {
+                                        "type": "string",
+                                        "default": "All sort by new date",
+                                        "description": "Message of the response"
+                                    },
+                                    "status": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "default": "200",
+                                        "description": "Status of the response"
+                                    },
+                                    "data": "array",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "All sort by new date"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sortproduct/OldDateProduct?page={page}&limit={limit}": {
+            "get": {
+                "tags": [
+                    "sort_Products"
+                ],
+                "parameters": [{
+                        "in": "path",
+                        "name": "page",
+                        "default": 1,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "limit",
+                        "default": 10,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }],
+                "sammary": "Get sort by old date ",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "message": {
+                                        "type": "string",
+                                        "default": "All sort by old date",
+                                        "description": "Message of the response"
+                                    },
+                                    "status": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "default": "200",
+                                        "description": "Status of the response"
+                                    },
+                                    "data": "array",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "All sort by old date"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sortproduct/discount?page={page}&limit={limit}": {
+            "get": {
+                "tags": [
+                    "sort_Products"
+                ],
+                "parameters": [{
+                        "in": "path",
+                        "name": "page",
+                        "default": 1,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "limit",
+                        "default": 10,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }],
+                "sammary": "Get sort by discount ",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "message": {
+                                        "type": "string",
+                                        "default": "All sort by discount",
+                                        "description": "Message of the response"
+                                    },
+                                    "status": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "default": "200",
+                                        "description": "Status of the response"
+                                    },
+                                    "data": "array",
+                                    "example": {
+                                        "status": 200,
+                                        "message": "All sort by discount"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
